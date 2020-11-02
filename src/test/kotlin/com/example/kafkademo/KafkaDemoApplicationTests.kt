@@ -7,24 +7,32 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class KafkaDemoApplicationTests {
 	@Test
-	fun testGetPrices() {
-		Assertions.assertEquals(getPrices(), mapOf<String, Double>("Apple" to 0.60, "Orange" to 0.25))
+	fun `test getPrices returns the right price map`() {
+		Assertions.assertEquals(Order.getPrices(), mapOf<String, Double>("Apple" to 0.60, "Orange" to 0.25))
 	}
 
 	@Test
-	fun `test getOrderQuantityMap passes`() {
-		val fruits = listOf<String>("Orange", "Apple", "Orange", "Orange", "Apple")
-		val orderQuantityMap = getOrderQuantityMap(fruits)
-		val expectedResult = mapOf<String, Int>("Orange" to 3, "Apple" to 2)
-		Assertions.assertEquals(expectedResult, orderQuantityMap)
+	fun `test getTotal returns the right value pre-discount`() {
+
 	}
 
 	@Test
-	fun `test getOrderQuantityMap fails`() {
-		val fruits = listOf<String>("Banana", "Apple", "Orange", "Orange", "Apple")
-		val orderQuantityMap = getOrderQuantityMap(fruits)
-		val expectedResult = mapOf<String, Int>("Orange" to 3, "Apple" to 2)
-		Assertions.assertEquals(expectedResult, orderQuantityMap)
+	fun `test getTotal returns the right value post-discount`() {
+
 	}
 
+	@Test
+	fun `test updateStock sets the stock to the right number`() {
+
+	}
+
+	@Test
+	fun `test getOutOfStockItems`() {
+
+	}
+
+	@Test
+	fun `test random items in order get ignored`() {
+
+	}
 }
