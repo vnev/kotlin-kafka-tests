@@ -1,14 +1,15 @@
 package com.example.kafkademo
 
+import com.example.kafkademo.Stock
+import com.example.kafkademo.Order
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
 class KafkaDemoApplicationTests {
 	@Test
 	fun `test getPrices returns the right price map`() {
-		Assertions.assertEquals(Order.getPrices(), mapOf<String, Double>("Apple" to 0.60, "Orange" to 0.25))
+		Assertions.assertEquals(Order.getPrices(), mapOf("Apple" to 0.60, "Orange" to 0.25))
 	}
 
 	@Test
@@ -31,16 +32,18 @@ class KafkaDemoApplicationTests {
 		val orderList = listOf("Apple", "Apple", "Orange", "Apple")
 		val order = Order(orderList)
 		Stock.updateStock(order)
-		Assertions.assertEquals(Stock.getStock(), mapOf<String, Int>("Apple" to 7, "Orange" to 9))
+		Assertions.assertEquals(Stock.getStock(), mapOf("Apple" to 7, "Orange" to 9))
+		Stock.resetStock()
 	}
 
 	@Test
 	fun `test getOutOfStockItems`() {
-		val orderList = listOf("Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple",
+		val orderList = listOf("Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple", "Apple",
 		"Orange", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange", "Orange")
 		val order = Order(orderList)
 		val outOfStockItems = Stock.getOutOfStockItems(order)
 		Assertions.assertEquals(outOfStockItems, listOf("Orange"))
+		Stock.resetStock()
 	}
 
 	@Test

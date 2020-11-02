@@ -8,6 +8,11 @@ object Stock {
         return stock
     }
 
+    // for JUnit tests, resets stock to be 10 of each fruit
+    fun resetStock() {
+        setStock(mapOf("Apple" to 10, "Orange" to 10))
+    }
+
     fun setStock(newStock: Map<String, Int>) {
         this.stock = newStock
     }
