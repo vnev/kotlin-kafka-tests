@@ -1,6 +1,5 @@
 package com.example.kafkademo
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
@@ -25,7 +24,7 @@ fun main(args: Array<String>) {
 
         println("All items in stock! Your total is \$$total. Estimated delivery by $formatted")
     } else {
-        println("We're sorry. Some items were out of stock: ${outOfStockItems.toString()}")
+        println("We're sorry. Some items were out of stock: $outOfStockItems")
     }
 }
 

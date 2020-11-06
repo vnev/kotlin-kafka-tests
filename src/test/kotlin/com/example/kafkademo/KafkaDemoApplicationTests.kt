@@ -1,10 +1,7 @@
 package com.example.kafkademo
 
-import com.example.kafkademo.Stock
-import com.example.kafkademo.Order
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 
 class KafkaDemoApplicationTests {
 	@Test
