@@ -32,9 +32,9 @@ object Stock {
         val order = order.getOrder()
         val outOfStockItems = mutableListOf<String>()
         for ((item, quantity) in currentStock) {
-            if (order[item]!! > quantity) {
-                outOfStockItems.add(item)
-            }
+            if (order.containsKey(item))
+                if (order[item]!! > quantity)
+                    outOfStockItems.add(item)
         }
         return outOfStockItems
     }

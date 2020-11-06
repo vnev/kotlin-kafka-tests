@@ -15,11 +15,17 @@ class Order {
 
     constructor(orderString: List<String>) {
         val order = mutableMapOf<String, Int>()
+        val unavailableItems = mutableSetOf<String>()
         for (item in orderString) {
-            if (item == "Apple" || item == "Orange") {
-                order[item] = order.getOrDefault(item, 0) + 1
+            when (item.toLowerCase()) {
+                "apple" -> order[item.toLowerCase().capitalize()] = order.getOrDefault(item, 0) + 1
+                "orange" -> order[item.toLowerCase().capitalize()] = order.getOrDefault(item, 0) + 1
+                else -> {
+                    unavailableItems.add(item)
+                }
             }
         }
+        println("The following items aren't sold here: $unavailableItems")
         this.setOrder(order)
     }
 
@@ -36,11 +42,11 @@ class Order {
     fun applyDiscount() {
         val newOrder = mutableMapOf<String, Int>()
         for ((item, quantity) in this.getOrder()) {
-            if (item == "Apple")
-                newOrder[item] = if (quantity % 2 == 0) (quantity / 2) else ((quantity - 1) / 2) + 1
-            if (item == "Orange")
-                newOrder[item] = if (quantity % 3 == 0) ((quantity * 2) / 3) else
-                                ((((quantity-(quantity % 3)) * 2) / 3)+(quantity % 3))
+            when (item) {
+                "Apple" -> newOrder[item] = if (quantity % 2 == 0) (quantity / 2) else ((quantity - 1) / 2) + 1
+                "Orange" -> newOrder[item] = if (quantity % 3 == 0) ((quantity * 2) / 3) else
+                    ((((quantity-(quantity % 3)) * 2) / 3)+(quantity % 3))
+            }
         }
         this.setOrder(newOrder)
     }
